@@ -7,18 +7,38 @@ import org.springframework.stereotype.Service;
 import com.App.crud.domain.model.Usuario;
 import com.App.crud.domain.repository.UsuarioRepositoryPort;
 
-@Service
-public class AuthService {
-    private final UsuarioRepositoryPort usuarioPort;
+import lombok.RequiredArgsConstructor;
 
-    public AuthService(UsuarioRepositoryPort usuarioPort) {
-        this.usuarioPort = usuarioPort;
+@Service
+@RequiredArgsConstructor
+public class AuthService {
+   
+
+    private final UsuarioRepositoryPort usuarioRepositoryPort;
+
+    public Usuario registrar(Usuario usuario) {
+        Optional<Usuario> usuarioExistente = usuarioRepositoryPort.BuscarPorEmail(usuario.getEmail());
+        if (usuarioExistente.isPresent()) {
+            throw new IllegalArgumentException("El correo electrónico ya está registrado.");
+        }
+        return usuarioRepositoryPort.guardar(usuario);
     }
 
-    public boolean login(String email, String password){
-        Optional<Usuario> uOpt = usuarioPort.findByEmail(email);
-        if(uOpt.isEmpty()) return false;
-        Usuario u = uOpt.get();
-        return u.getPassword().equals(password);
+    public Usuario login(String email, String password){
+        return usuarioRepositoryPort.BuscarPorEmail(email)
+                .filter(usuario -> usuario.getPassword().equals(password))
+                .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
+    }
+
+    public Optional<Usuario> buscarporid(Long id){
+        return usuarioRepositoryPort.BuscarPorId(id);
+    }
+
+    public java.util.List<Usuario> listarUsuarios(){
+        return usuarioRepositoryPort.Listar();
+    }
+
+    public void eliminar(Long id){
+        usuarioRepositoryPort.eliminar(id);
     }
 }

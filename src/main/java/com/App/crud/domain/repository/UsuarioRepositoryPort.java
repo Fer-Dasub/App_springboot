@@ -1,11 +1,20 @@
 package com.App.crud.domain.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.App.crud.domain.model.Usuario;
 
 public interface UsuarioRepositoryPort {
-    Usuario save(Usuario u);
-    Optional<Usuario> findById(Long id);
-    Optional<Usuario> findByEmail(String email);
+   List<Usuario> Listar();
+
+    Optional<Usuario> BuscarPorId(Long id);
+
+    Optional<Usuario> BuscarPorEmail(String email);
+
+    Usuario guardar(Usuario usuario);
+
+    void eliminar(Long id);
+
+
 } 
