@@ -6,8 +6,8 @@ import java.util.Optional;
 import com.App.crud.domain.model.CarreraAcademica;
 
 public interface CarreraAcademicaRepositoryPort {
-    CarreraAcademica save(CarreraAcademica carreraAcademica);
-    List<CarreraAcademica> findAll();
-    Optional<CarreraAcademica> findById(Long id);
-    void deleteById(Long id);
+    List<CarreraAcademica> listar();
+    Optional<CarreraAcademica> BuscarPorId(Long id);
+    CarreraAcademica guardar(CarreraAcademica carreraAcademica);
+    void eliminar(Long id);
 }

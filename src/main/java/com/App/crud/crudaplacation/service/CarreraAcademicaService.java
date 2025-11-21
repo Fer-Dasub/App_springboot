@@ -17,34 +17,20 @@ public class CarreraAcademicaService{
     }
 
     public CarreraAcademica crear(CarreraAcademica carreraAcademica) {
-        return port.save(carreraAcademica);
+        return port.guardar(carreraAcademica);
     }
 
     public List<CarreraAcademica> listar() {
-        return port.findAll();
+        return port.listar();
     }
 
     public Optional<CarreraAcademica> buscar(Long id) {
-        return port.findById(id);
+        return port.BuscarPorId(id);
     }
 
-    public CarreraAcademica actualizar(Long id, CarreraAcademica c) {
-        CarreraAcademica actual = port.findById(id).orElseThrow(() -> new RuntimeException("CarreraAcademica no encontrada"));
-        actual.setNombre(c.getNombre());
-        actual.setNumCreditos(c.getNumCreditos());
-        actual.setNumAsignaturas(c.getNumAsignaturas());
-        actual.setNumSemestres(c.getNumSemestres());
-        actual.setNivelFormacion(c.getNivelFormacion());
-        actual.setTitulo(c.getTitulo());
-        actual.setValorSemestre(c.getValorSemestre());
-        actual.setUniversidad(c.getUniversidad());
-        actual.setEsAcreditada(c.getEsAcreditada());
-        actual.setPerfiles(c.getPerfiles());
-        actual.setAreaConocimiento(c.getAreaConocimiento());
-        return port.save(actual);
-    }
+  
 
     public void eliminar(Long id) {
-        port.deleteById(id);
+        port.eliminar(id);
     }
 }
