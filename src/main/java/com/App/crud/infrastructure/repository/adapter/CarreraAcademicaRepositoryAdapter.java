@@ -32,7 +32,7 @@ public class CarreraAcademicaRepositoryAdapter implements CarreraAcademicaReposi
     }
 
     @Override
-    public List<CarreraAcademica> listar() {
+    public List<CarreraAcademica> Listar() {
         return jpaRepository.findAll()
             .stream()
             .map(e -> new CarreraAcademica(e.getId(), e.getNombre()))

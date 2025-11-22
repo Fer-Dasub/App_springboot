@@ -20,8 +20,8 @@ public class CarreraAcademicaService{
         return port.guardar(carreraAcademica);
     }
 
-    public List<CarreraAcademica> listar() {
-        return port.listar();
+    public List<CarreraAcademica> Listar() {
+        return port.Listar();
     }
 
     public Optional<CarreraAcademica> buscar(Long id) {

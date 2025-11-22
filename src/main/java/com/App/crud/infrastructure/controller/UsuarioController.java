@@ -19,6 +19,12 @@ import com.App.crud.domain.repository.UsuarioRepositoryPort;
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 
+    /*@GetMapping
+     public String test() {
+        return "API funcionando";
+     } */
+
+
     @Autowired
     private UsuarioRepositoryPort usuarioRepository;
 
